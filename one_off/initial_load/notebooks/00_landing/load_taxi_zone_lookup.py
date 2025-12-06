@@ -6,7 +6,7 @@ import os
 # Target URL of the public csv file to download
 url = "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv"
 
-# Open a connection to the remote URL and fetch the Parquet file as a stream
+# Open a connection and stream the remote file
 response = urllib.request.urlopen(url)
 
 # Create the destination directory for storing the downloaded Parquet file

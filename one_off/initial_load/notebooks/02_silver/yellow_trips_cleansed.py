@@ -10,7 +10,7 @@ df = spark.read.table("nyctaxi.01_bronze.yellow_trips_raw")
 
 # Filter trips to ensure they align with the date range for the parquet files
 # In this example I expect the tpep_pickup_datetime to be within January 2025 and June 2025 as these are the parquet files I initially loaded
-df = df.filter("tpep_pickup_datetime >= '2025-03-01' AND tpep_pickup_datetime < '2025-08-01'")
+df = df.filter("tpep_pickup_datetime >= '2024-12-01' AND tpep_pickup_datetime < '2025-06-01'")
 
 # COMMAND ----------
 

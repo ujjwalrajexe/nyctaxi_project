@@ -1,12 +1,21 @@
 # Databricks notebook source
+import sys
+import os
+# Go two levels up to reach the project root
+project_root = os.path.abspath(os.path.join(os.getcwd(), "../.."))
+
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
 from pyspark.sql.functions import count, max, min, avg, sum, round
 from dateutil.relativedelta import relativedelta
 from datetime import date
+from modules.utils.date_utils import get_month_start_n_months_ago
 
 # COMMAND ----------
 
 # Get the first day of the month two months ago
-two_months_ago_start = date.today().replace(day=1) - relativedelta(months=2)
+two_months_ago_start = get_month_start_n_months_ago(2)
 
 # COMMAND ----------
 
@@ -17,8 +26,9 @@ df = spark.read.table("nyctaxi.02_silver.yellow_trips_enriched").filter(f"tpep_p
 # COMMAND ----------
 
 # Aggregate trip data by pickup date with key metrics
+# group records by calendar date
 df = df.\
-        groupBy(df.tpep_pickup_datetime.cast("date").alias("pickup_date") ).\
+        groupBy(df.tpep_pickup_datetime.cast("date").alias("pickup_date")).\
         agg(
             count("*").alias("total_trips"),                             # total number of trips per day
             round(avg("passenger_count"), 1).alias("average_passengers"), # average passengers per trip

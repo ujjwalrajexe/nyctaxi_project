@@ -10,8 +10,8 @@ import os
 import shutil
 
 # List of year-month strings representing the data files to download
-# PLEASE UPDATE THIS LIST FOR YOUR DATE RANGE, THIS SHOULD BE THE LAST 6 MONTHS OF AVAILABLE DATA
-dates_to_process = ['2025-03', '2025-04', '2025-05', '2025-06', '2025-07', '2025-08']
+# PLEASE UPDATE THIS LIST FOR YOUR DATE RANGE, THIS SHOULD BE 6 MONTHS OF DATA UP TO 3 MONTHS PRIOR THE CURRENT DATE
+dates_to_process = ['2024-12', '2025-01', '2025-02', '2025-03', '2025-04', '2025-05', '2025-05']
 
 for date in dates_to_process:
     # Construct the URL for the Parquet file corresponding to this month
